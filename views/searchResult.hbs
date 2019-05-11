@@ -1,0 +1,16 @@
+<html>
+
+<head>
+    <title>{{title}}</title>
+</head>
+
+<body>
+    {{> searchBar}}
+    {{#each books}}
+    <p>{{this.title}} was written by {{this.author}}, published by {{this.publisher}}</p>
+    {{else}}
+    <p class="empty">No content</p>
+    {{/each}}
+</body>
+
+</html>
