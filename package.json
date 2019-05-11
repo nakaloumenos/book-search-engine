@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/nakaloumenos/book-search-engine/issues"
   },
-  "homepage": "https://github.com/nakaloumenos/book-search-engine#readme"
+  "homepage": "https://github.com/nakaloumenos/book-search-engine#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
 }
