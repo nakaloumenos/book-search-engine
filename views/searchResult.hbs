@@ -7,7 +7,9 @@
 <body>
     {{> searchBar}}
     {{#each books}}
-    <p>{{this.volumeInfo.title}} was written by {{this.volumeInfo.authors.1)}}, published by {{this.volumeInfo.publisher}}</p>
+    <p>{{this.title}} was written by {{this.author}}, published by {{this.publisher}}</p>
+    <img src={{this.image}}>
+    <a href={{this.moreDetails}} target="_blank">More details</a>
     {{else}}
     <p class="empty">No content</p>
     {{/each}}
