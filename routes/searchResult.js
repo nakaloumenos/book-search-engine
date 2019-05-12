@@ -4,8 +4,9 @@ const getBooks = require('../repositories/booksRepository');
 
 /* GET result page. */
 router.get('/', async (req, res, next) => {
-    const books = await getBooks();
-    console.log(books);
+    const { queryParams } = req.query;
+    console.log(queryParams);
+    const books = await getBooks(queryParams);
     return res.render('searchResult', { title: 'Book Search Engine', books });
 });
 
