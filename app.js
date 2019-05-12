@@ -13,8 +13,9 @@ hbs.registerPartials(__dirname + '/views/partials');
 app.use(express.urlencoded({ extended: true }));
 
 // Routes
-app.use('/', indexRouter);
 app.use('/searchResult', searchResultRouter);
+app.use('/', indexRouter);
+
 
 const port = 3000;
 app.listen(port, () => console.log(`Server listening at: ${port}!`));
