@@ -17,4 +17,4 @@ app.use('/searchResult', searchResultRouter);
 app.use('/', indexRouter);
 
 const port = process.env.PORT || 5000;
-app.listen(port, () => console.log(`Server listening at: ${port}!`));
+app.listen(port, () => console.log(`Server listening at: ${port}!, dirname: ${__dirname}`));
