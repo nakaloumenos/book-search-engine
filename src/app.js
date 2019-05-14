@@ -7,7 +7,7 @@ const searchResultRouter = require('./routes/searchResult');
 // view engine setup
 app.set('view engine', 'hbs');
 // Set handlebars partials folder
-hbs.registerPartials(__dirname + '/views/partials');
+hbs.registerPartials('./views/partials');
 
 // Middleware
 app.use(express.urlencoded({ extended: true }));
