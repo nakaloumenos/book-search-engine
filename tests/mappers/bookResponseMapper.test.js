@@ -1,9 +1,9 @@
-const mapper = require('../mappers/bookResponseMapper');
+const mapper = require('../../mappers/bookResponseMapper');
 const assert = require('assert');
 
 describe('BookMapper', () => {
     describe('#mapResponse()', () => {
-        it("maps item to domain info", () => {
+        it('maps item to domain info', () => {
             const item = {
                 volumeInfo: {
                     title: 'title',
@@ -26,7 +26,7 @@ describe('BookMapper', () => {
                 moreDetails: 'infoLink'
             }
 
-            assert.deepStrictEqual(mapper(item), expected);
+            assert.deepStrictEqual(mapper.mapResponse(item), expected);
         });
 
         it("maps null attributes to empty strings", () => {
@@ -48,7 +48,7 @@ describe('BookMapper', () => {
                 moreDetails: ''
             }
 
-            assert.deepStrictEqual(mapper(item), expected);
+            assert.deepStrictEqual(mapper.mapResponse(item), expected);
         });
     });
 });

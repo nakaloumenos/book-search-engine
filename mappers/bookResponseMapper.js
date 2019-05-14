@@ -8,4 +8,4 @@ const mapResponse = (item) => {
     }
 }
 
-module.exports = mapResponse;
+module.exports = { mapResponse };
