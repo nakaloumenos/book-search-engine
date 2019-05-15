@@ -23,31 +23,34 @@
 
 <div class="container">
     {{> searchBar}}
-    {{#each books}}
+    <div>
 
-    {{!-- <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src={{this.image}} alt="Card image cap">
-        <div class="card-body">
-            <h5 class="card-title">{{this.title}}</h5>
-            <p class="card-text">Written by {{this.author}}, published by {{this.publisher}}.</p>
-            <a href={{this.moreDetails}} target="_blank" class="btn btn-primary">More details</a>
-        </div>
-    </div> --}}
+        <p>Results for {{query}}</p>
 
-    <div class="card mb-3" style="width: 10rem;">
-        <img class="card-img-top" src={{this.image}} alt="Card image cap">
-        <div class="card-body">
-            <h5 class="card-title">{{this.title}}</h5>
-            <p class="card-text">Written by {{this.author}}, published by {{this.publisher}}.</p>
-            <a href={{this.moreDetails}} target="_blank" class="btn btn-primary">More details</a>
-        </div>
-    </div>
-
-    {{else}}
-
-    <p class="empty">No content</p>
+        {{#each books}}
     
-    {{/each}}
+        <div class="card mb-3" style="width: 20rem;">
+            <div class="text-center">
+                <h6 class="card-title">{{this.title}}</h6>
+                <img class="card-img-top" src={{this.image}} alt="Card image cap" style="width: 8rem;" >
+            </div>
+            <div class="card-body">
+                <p class="card-text">Written by {{this.author}}.</p>
+                <p>Published by {{this.publisher}}.</p>
+                <a href={{this.moreDetails}} target="_blank" class="btn btn-primary">More details</a>
+            </div>
+        </div>
+
+        {{else}}
+
+        <div class="alert alert-warning" role="alert">
+            No books found for {{query}}.
+        </div>
+    
+        {{/each}}
+
+    </div>
+    
 </div>
     
 </body>

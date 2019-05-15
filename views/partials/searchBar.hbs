@@ -1,13 +1,16 @@
-<h1>Find your favourite books!</h1>
+<h3>Find your favourite books!</h3>
 
 {{!-- <form action="/searchResult" method="get">
     <input type="query" name="queryParams" required />
     <button type="submit">Search</button>
 </form> --}}
 
-<form action="/searchResult" method="get">
-  <div class="form-group">
+<form class="form-inline" action="/searchResult" method="get">
+  <div class="form-group mb-2">
     <input type="query" name="queryParams" class="form-control" placeholder="Search the Web" required>
   </div>
-  <button type="submit" class="btn btn-primary">Search</button>
+  <button type="submit" class="btn btn-primary mx-sm-3 mb-2">Search</button>
+
+  {{!-- <button type="submit" class="btn btn-primary mb-2">Confirm identity</button> --}}
+
 </form>
