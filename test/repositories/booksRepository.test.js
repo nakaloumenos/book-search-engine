@@ -47,7 +47,7 @@ describe('BooksRepository', () => {
         await repository.getBooks(query.q);
       } catch (err) {
         assert(err);
-        assert.equal(err.message, 'Response returned status: 500');
+        assert.equal(err.message, 'Error while calling books API');
       }
     });
 

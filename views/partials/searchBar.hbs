@@ -1,6 +1,13 @@
-<h1>Find Books</h1>
+<h1>Find your favourite books!</h1>
 
-<form action="/searchResult" method="get">
+{{!-- <form action="/searchResult" method="get">
     <input type="query" name="queryParams" required />
     <button type="submit">Search</button>
+</form> --}}
+
+<form action="/searchResult" method="get">
+  <div class="form-group">
+    <input type="query" name="queryParams" class="form-control" placeholder="Search the Web" required>
+  </div>
+  <button type="submit" class="btn btn-primary">Search</button>
 </form>

@@ -3,7 +3,7 @@ const mapResponse = (item) => {
     title: item.volumeInfo.title || '',
     author: item.volumeInfo.authors ? item.volumeInfo.authors[0] : '',
     publisher: item.volumeInfo.publisher || '',
-    image: item.volumeInfo.imageLinks ? item.volumeInfo.imageLinks.smallThumbnail : '',
+    image: item.volumeInfo.imageLinks ? item.volumeInfo.imageLinks.thumbnail : '',
     moreDetails: item.volumeInfo.infoLink || '',
   };
 };
