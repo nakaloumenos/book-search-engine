@@ -4,6 +4,7 @@ const mapper = require('../mappers/bookResponseMapper');
 const getBooks = async (queryParams) => {
   try {
     const res = await axios.get('https://www.googleapis.com/books/v1/volumes?q=' + queryParams);
+    console.log(res);
     const items = res.data.items;
 
     if (items) {
