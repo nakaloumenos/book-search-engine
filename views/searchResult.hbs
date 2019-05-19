@@ -25,7 +25,8 @@
     {{> searchBar}}
 
         {{#if books.length}}
-            <p>{{books.length}} results found for "<b>{{query}}</b>":</p>
+            {{!-- Google Books API return up to 10 without the maxResults param --}}
+            <p>Top {{books.length}} results for "<b>{{query}}</b>":</p>
         {{/if}}
 
         {{#each books}}
