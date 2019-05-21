@@ -1,10 +1,11 @@
-const mapResponse = (item) => {
+/* Map book information or empty string if not found. */
+const mapResponse = (bookResource) => {
   return {
-    title: item.volumeInfo.title || '',
-    author: item.volumeInfo.authors ? item.volumeInfo.authors[0] : '',
-    publisher: item.volumeInfo.publisher || '',
-    image: item.volumeInfo.imageLinks ? item.volumeInfo.imageLinks.thumbnail : '',
-    moreDetails: item.volumeInfo.infoLink || '',
+    title: bookResource.volumeInfo.title || '',
+    author: bookResource.volumeInfo.authors ? bookResource.volumeInfo.authors[0] : '',
+    publisher: bookResource.volumeInfo.publisher || '',
+    image: bookResource.volumeInfo.imageLinks ? bookResource.volumeInfo.imageLinks.thumbnail : '',
+    moreDetails: bookResource.volumeInfo.infoLink || '',
   };
 };
 

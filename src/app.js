@@ -6,6 +6,7 @@ const searchResultRouter = require('./routes/searchResult');
 
 // view engine setup
 app.set('view engine', 'hbs');
+
 // Set handlebars partials folder
 hbs.registerPartials('./views/partials');
 

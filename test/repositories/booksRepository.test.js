@@ -6,6 +6,9 @@ const repository = require('../../src/repositories/booksRepository');
 
 const sandbox = sinon.createSandbox();
 
+const GOOGLE_BOOKS_BASE_PATH = 'https://www.googleapis.com';
+const GOOGLE_BOOKS_RESOURCE = '/books/v1/volumes';
+
 describe('BooksRepository', () => {
   describe('.getBooks()', () => {
     beforeEach(() => {
@@ -14,39 +17,42 @@ describe('BooksRepository', () => {
 
     it('should call all functions with appropriate params', async () => {
       const query = { q: 'harry' };
-      const response = {
+      const httpStatus = 200;
+
+      const bookResources = {
         items: [{ title: 'title1' }],
       };
-      const mappedBook = {
+      const expectedMappedBook = {
         title: 'title1-mapped',
       };
 
-      nock('https://www.googleapis.com')
-        .get('/books/v1/volumes')
+      nock(GOOGLE_BOOKS_BASE_PATH)
+        .get(GOOGLE_BOOKS_RESOURCE)
         .query(query)
-        .reply(200, response)
+        .reply(httpStatus, bookResources)
         .isDone();
-      const mapperStub = sandbox.stub(mapper, 'mapResponse').returns(mappedBook);
+      const mapperStub = sandbox.stub(mapper, 'mapResponse').returns(expectedMappedBook);
 
-      const actualRes = await repository.getBooks(query.q);
+      const actualMappedBooks = await repository.getBooks(query.q);
 
-      mapperStub.calledOnceWith(response.items[0]);
-      assert.deepStrictEqual(actualRes, [mappedBook]);
+      mapperStub.calledOnceWith(bookResources.items[0]);
+      assert.deepStrictEqual(actualMappedBooks, [expectedMappedBook]);
     });
 
     it('it should handle error when response is 500', async () => {
       const query = { q: 'harry' };
       const httpStatus = 500;
       const errMessage = 'this is the reason';
+      const errResponse = {
+        error: {
+          message: errMessage,
+        },
+      };
 
-      nock('https://www.googleapis.com')
-        .get('/books/v1/volumes')
+      nock(GOOGLE_BOOKS_BASE_PATH)
+        .get(GOOGLE_BOOKS_RESOURCE)
         .query(query)
-        .reply(httpStatus, {
-          error: {
-            message: errMessage,
-          },
-        })
+        .reply(httpStatus, errResponse)
         .isDone();
 
       try {
@@ -59,11 +65,12 @@ describe('BooksRepository', () => {
 
     it('should handle a response of undifiend items', async () => {
       const query = { q: 'harry' };
+      const httpStatus = 200;
 
-      nock('https://www.googleapis.com')
-        .get('/books/v1/volumes')
+      nock(GOOGLE_BOOKS_BASE_PATH)
+        .get(GOOGLE_BOOKS_RESOURCE)
         .query(query)
-        .reply(200, {})
+        .reply(httpStatus, {})
         .isDone();
 
       const actualRes = await repository.getBooks(query.q);
