@@ -36,18 +36,24 @@ describe('BooksRepository', () => {
 
     it('it should handle error when response is 500', async () => {
       const query = { q: 'harry' };
+      const httpStatus = 500;
+      const errMessage = 'this is the reason';
 
       nock('https://www.googleapis.com')
         .get('/books/v1/volumes')
         .query(query)
-        .reply(500, {})
+        .reply(httpStatus, {
+          error: {
+            message: errMessage,
+          },
+        })
         .isDone();
 
       try {
         await repository.getBooks(query.q);
       } catch (err) {
         assert(err);
-        assert.equal(err.message, 'Error while calling books API');
+        assert.equal(err.message, `API returned with ${httpStatus}: ${errMessage}`);
       }
     });
 
