@@ -77,5 +77,50 @@ describe('BooksRepository', () => {
 
       assert.deepStrictEqual(actualRes, []);
     });
+
+    it('should return only books with all the details', async () => {
+      const query = { q: 'harry' };
+      const httpStatus = 200;
+
+      const completeBookResource = {
+        volumeInfo: {
+          title: 'title',
+          authors: ['author1', 'author2'],
+          publisher: 'publisher',
+          imageLinks: {
+            thumbnail: 'thumbnailLink',
+          },
+          infoLink: 'infoLink',
+        },
+      };
+
+      const incompleteBookResource = {
+        volumeInfo: {
+          title: 'title',
+          authors: ['author1', 'author2'],
+        },
+      };
+
+      const bookResources = {
+        items: [completeBookResource, incompleteBookResource],
+      };
+      const expectedMappedBook = {
+        title: 'title',
+        author: 'author1',
+        publisher: 'publisher',
+        image: 'thumbnailLink',
+        moreDetails: 'infoLink',
+      };
+
+      nock(GOOGLE_BOOKS_BASE_PATH)
+        .get(GOOGLE_BOOKS_RESOURCE)
+        .query(query)
+        .reply(httpStatus, bookResources)
+        .isDone();
+
+      const actualMappedBooks = await repository.getBooks(query.q);
+
+      assert.deepStrictEqual(actualMappedBooks, [expectedMappedBook]);
+    });
   });
 });

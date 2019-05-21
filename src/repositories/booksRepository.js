@@ -13,7 +13,8 @@ const getBooks = async (queryParams) => {
 const handleResponse = (res) => {
   const bookResources = res.data.items;
   if (bookResources) {
-    return bookResources.map((bookResource) => mapper.mapResponse(bookResource));
+    const mappedBooks = bookResources.map((bookResource) => mapper.mapResponse(bookResource));
+    return mappedBooks.filter(hasAllInformation);
   }
   return [];
 };
@@ -32,6 +33,10 @@ const handleError = (err) => {
   }
 
   throw new Error(errMsg);
+};
+
+const hasAllInformation = (book) => {
+  return book.title != '' && book.author != '' && book.publisher != '' && book.image != '' && book.moreDetails != '';
 };
 
 module.exports = { getBooks };
