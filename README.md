@@ -1,6 +1,6 @@
 # Book Search Engine
 
-An application that searches for books using the Google Books API.
+An application that searches for books using the [Google Books API](https://developers.google.com/books/docs/overview).
 
 ### About
 
