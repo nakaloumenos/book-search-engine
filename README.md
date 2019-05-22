@@ -17,8 +17,6 @@ After getting a response, books that are missing any of the desired information 
 
 The view part of the app is developed using `handlebars.js` and `Bootstrap`.
 
----
-
 ### Running the app
 
 Once inside the app's directory:
