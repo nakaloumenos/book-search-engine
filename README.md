@@ -2,6 +2,8 @@
 
 An application that searches for books using the [Google Books API](https://developers.google.com/books/docs/overview).
 
+You can find a deployed version of the app on [Heroku](https://secret-sea-45295.herokuapp.com) or running it locally following the instructions.
+
 ### About
 
 This is an `Express.js` application in `node.js`, that uses the `Google Books API` to retrieve the following information about books:
