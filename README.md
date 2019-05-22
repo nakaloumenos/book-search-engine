@@ -6,7 +6,7 @@ You can find a deployed version of the app on [Heroku](https://secret-sea-45295.
 
 ### About
 
-This is an `Express.js` application in `node.js`, that uses the `Google Books API` to retrieve the following information about books:
+This is an `node.js` application using `Express.js` framework, that utilizes the `Google Books API` to retrieve the following information about books:
 
 * Title
 * Main author
@@ -17,7 +17,7 @@ This is an `Express.js` application in `node.js`, that uses the `Google Books AP
 The app sends the request to Google's API, with user's input as parameters, using `axios`.
 After getting a response, books that are missing any of the desired information are filtered.
 
-The view part of the app is developed using `handlebars.js` and `Bootstrap`.
+The view part of the app is developed using `Handlebars.js` and `Bootstrap`.
 
 ### Running the app
 
