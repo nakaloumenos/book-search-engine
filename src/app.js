@@ -10,9 +10,6 @@ app.set('view engine', 'hbs');
 // Set handlebars partials folder
 hbs.registerPartials('./views/partials');
 
-// Middleware
-app.use(express.urlencoded({ extended: true }));
-
 // Routes
 app.use('/searchResult', searchResultRouter);
 app.use('/', indexRouter);
