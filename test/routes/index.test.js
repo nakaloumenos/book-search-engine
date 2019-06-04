@@ -1,25 +1,27 @@
 const request = require('supertest');
 const app = require('../../src/app');
 
-describe('Index Page Integration Test', () => {
-  it('has title', (done) => {
-    request(app)
-      .get('/')
-      .expect(200)
-      .expect(/Find your favourite books!/, done);
-  });
+describe('index', () => {
+  describe('integration tests', () => {
+    it('has title', (done) => {
+      request(app)
+        .get('/')
+        .expect(200)
+        .expect(/<h3>Find your favourite books!<\/h3>/, done);
+    });
 
-  it('has button', (done) => {
-    request(app)
-      .get('/')
-      .expect(200)
-      .expect(/Search/, done);
-  });
+    it('has button', (done) => {
+      request(app)
+        .get('/')
+        .expect(200)
+        .expect(/<button type="submit" class="(.*)">Search<\/button>/, done);
+    });
 
-  it('has placeholder', (done) => {
-    request(app)
-      .get('/')
-      .expect(200)
-      .expect(/Search the Web/, done);
+    it('has placeholder', (done) => {
+      request(app)
+        .get('/')
+        .expect(200)
+        .expect(/placeholder="Search the Web"/, done);
+    });
   });
 });
