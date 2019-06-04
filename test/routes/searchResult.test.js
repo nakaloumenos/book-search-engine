@@ -1,13 +1,16 @@
 const request = require('supertest');
 const app = require('../../src/app');
 const nock = require('nock');
+const sinon = require('sinon');
+const repository = require('../../src/repositories/booksRepository');
+const mapper = require('../../src/mappers/bookResponseMapper');
 
 const GOOGLE_BOOKS_BASE_PATH = 'https://www.googleapis.com';
 const GOOGLE_BOOKS_RESOURCE = '/books/v1/volumes';
 const QUERY_PARAMS = 'Harry';
 const QUERY = { q: QUERY_PARAMS };
 
-describe('searchResult', () => {
+describe('searchResult', async () => {
   describe('integration tests', () => {
     it('has title', (done) => {
       request(app)
@@ -91,6 +94,21 @@ describe('searchResult', () => {
         .expect(200)
         .expect(/No Books Found!/)
         .expect(/Reason: No response received/, done);
+    });
+
+    it('verify repository call with right args', () => {
+      const repositorySpy = sinon.spy(repository, 'getBooks');
+      request(app)
+        .get(`/searchResult?queryParams=${QUERY_PARAMS}`)
+        .expect(repositorySpy.calledOnce)
+        .expect(repositorySpy.calledWith(QUERY_PARAMS));
+    });
+
+    it('verify no mapper call on error', () => {
+      const mapperSpy = sinon.spy(mapper, 'mapResponse');
+      request(app)
+        .get(`/searchResult?queryParams=${QUERY_PARAMS}`)
+        .expect(mapperSpy.notCalled);
     });
   });
 });
